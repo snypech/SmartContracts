@@ -1,10 +1,10 @@
 from types import SimpleNamespace
-from brownie import accounts, SimpleStorage
+from brownie import accounts, SimpleStorage, network, config
 
 
 def deploy_simple_storage():
     # work with ganachicli accounts
-    account = accounts[0]
+    account = get_account()
     # print(account)
     # account = accounts.load("secondacc-brownie")
     # print(account)
@@ -15,6 +15,14 @@ def deploy_simple_storage():
     transaction.wait(1)
     stored_value = simple_storage.getFavoriteNumber()
     print(stored_value)
+
+
+def get_account():
+    if network.show_active() == "development":
+        return accounts[0]
+    else:
+        # return accounts.add(config["wallets"]["from_key"])
+        return accounts.load("secondacc-brownie")
 
 
 def main():
