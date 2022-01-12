@@ -1,5 +1,5 @@
 from scripts.utils import get_account, get_contract
-from brownie import Lottery, network, config
+from brownie import Lottery, accounts, network, config
 
 
 def deploy_lottery():
@@ -17,5 +17,24 @@ def deploy_lottery():
     return lottery
 
 
+def start_lottery():
+    account = get_account()
+    lottery = Lottery[-1]
+    starting_tx = lottery.startLottery({"from": account})
+    starting_tx.wait(1)
+    print("lottery has started")
+
+
+def enter_lottery():
+    account = get_account()
+    lottery = Lottery[-1]
+    value = lottery.getEntranceFee() + 1000
+    tx = lottery.enter({"from": account, "value": value})
+    tx.wait(1)
+    print("You have entered the lottery!")
+
+
 def main():
     deploy_lottery()
+    start_lottery()
+    enter_lottery()
