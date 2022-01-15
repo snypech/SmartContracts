@@ -69,6 +69,8 @@ def test_can_pick_winner_correctly():
     account = get_account()
     lottery.startLottery()
     lottery.enter({"from": account, "value": lottery.getEntranceFee()})
+    lottery.enter({"from": get_account(index=1), "value": lottery.getEntranceFee()})
+    lottery.enter({"from": get_account(index=2), "value": lottery.getEntranceFee()})
     fund_with_link(lottery.address)
     starting_balance_of_account = account.balance()
     balance_of_lottery = lottery.balance()

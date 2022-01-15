@@ -13,7 +13,7 @@ gas_strategy = GasNowStrategy("fast")
 def test_can_pick_winner():
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         pytest.skip()
-    # lottery = deploy_lottery()
+    lottery = deploy_lottery()
     # lottery = Lottery[-1]
     account = get_account()
     network.gas_limit("auto")
