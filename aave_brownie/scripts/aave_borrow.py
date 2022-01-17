@@ -12,6 +12,7 @@ def main():
     # Testing mainnet fork
     if network.show_active() in ["mainnet-fork-dev"]:
         get_weth()
+    get_weth()
     lending_pool = get_lending_pool()
     # Approbe ERC20
     approve_erc20(amount, lending_pool.address, erc20_address, account)
@@ -29,7 +30,7 @@ def main():
     dai_eth_price = get_asset_price(
         config["networks"][network.show_active()]["dai_eth_price_feed"]
     )
-    amount_dai_to_borrow = (1 / dai_eth_price) * (borrowable_eth * 0.95)
+    amount_dai_to_borrow = (1 / dai_eth_price) * (borrowable_eth * 0.8)
     # borrowable_eth -> borrowable_dai * 95%\
     print(f"We are going to borrow {amount_dai_to_borrow} DAI")
     # Now we will borrow!
@@ -45,7 +46,7 @@ def main():
     borrow_tx.wait(1)
     print("We borrowed some DAI!")
     get_borrowable_data(lending_pool, account)
-    repay_all(amount, lending_pool, account)
+    # repay_all(amount, lending_pool, account)
     print(
         "You just deposited, borrowed, and repayed with Aave, Brownie, and Chainlink!"
     )
