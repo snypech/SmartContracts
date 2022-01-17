@@ -13,3 +13,5 @@ Use weth interface to get token contract
 Integration test: kovan
 
 Unit Test: Mainnet fork (Use mokcs when working with oracles)
+
+get_weth: get contract from interface
