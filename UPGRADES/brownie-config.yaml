@@ -5,3 +5,12 @@ compiler:
     remappings:
       - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.1.0'
 dotenv: .env
+accountname: ${ACCOUNT_NAME}
+networks:
+  default: development
+  development:
+    verify: False
+  rinkeby:
+    verify: False
+  ganache:
+    verify: False
