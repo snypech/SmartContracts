@@ -21,6 +21,7 @@ def main():
     )
     print(f"Proxy deployed to {proxy} ! You can now upgrade it to BoxV2!")
     proxy_box = Contract.from_abi("Box", proxy.address, Box.abi)
-    proxy_box.store(1,{'from':account})
+    tx=proxy_box.store(1,{'from':account})
+    tx.wait(1)
     print(f"Here is the initial value in the Box: {proxy_box.retrieve()}")
 
